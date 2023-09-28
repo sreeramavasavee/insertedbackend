@@ -7,7 +7,10 @@ def insert_topic(request):
     to=topic.objects.get_or_create(topic_name=t)[0]
     to.save()
     return HttpResponse('inserted successfully...')
-
+def display(request):
+    qsro=topic.objects.all()
+    d={'qsro':qsro}
+    return render(request,'display.html',d)
 def insert_webpage(request):
     t=input('enter topic name:')
     to=topic.objects.get_or_create(topic_name=t)[0]
@@ -17,6 +20,11 @@ def insert_webpage(request):
     no=webpage.objects.get_or_create(topic_name=to,name=name,url=url)[0]
     no.save()
     return HttpResponse('data inserted successfully..')
+
+def display_webpage(request):
+    wsro=webpage.objects.all()
+    d={'wsro':wsro}
+    return render(request,'display_webpage.html',d)
 
 def insert_accessrecords(request):
     t=input('enter topic name:')
@@ -31,4 +39,10 @@ def insert_accessrecords(request):
     aro=accessrecords.objects.get_or_create(name=no,date=date,author=author)[0]
     aro.save()
     return HttpResponse('inserted data to accessrcords successfully..')
+
+def display_accessrecords(request):
+    asro=accessrecords.objects.all()
+    d={'asro':asro}
+    return render(request,'display_accessrecords.html',d)
+
 
